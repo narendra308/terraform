@@ -1,7 +1,7 @@
 resource "aws_instance" "expense" {
     count = 3
   ami           = "ami-09c813fb71547fc4f" # this aws 
-  vpc_security_group_ids  = [aws_security_group.allow_tls_v2.id]
+  vpc_security_group_ids  = [aws_security_group.allow_tls.id]
   instance_type = "t3.micro"
   tags = {
       Name = var.instance[count.index]
@@ -9,8 +9,8 @@ resource "aws_instance" "expense" {
   }
 
 
-resource "aws_security_group" "allow_tls_v2" {
-  name        = "allow_tls_v2"
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
   description = "Allow TLS inbound traffic and all outbound traffic"
 
   ingress {
